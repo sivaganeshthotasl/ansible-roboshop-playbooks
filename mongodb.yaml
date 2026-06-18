@@ -6,7 +6,6 @@
 
   vars:
     PACKAGE: mongodb-org
-    SERVICE: mongod
   tasks:
   - name: Copy mongodb repo file
     ansible.builtin.copy:
@@ -15,11 +14,11 @@
 
   - name: Install mongdb
     ansible.builtin.package:
-      name: "{{ PACKAGE }}"
+      name: mongod
       state: present
   - name: Enable and Start Mongodb
     ansible.builtin.service:
-       name: " {{SERVICE}}"
+       name: mongod
        enabled: yes
        state: started
   - name: Allow Remote connection
@@ -29,6 +28,6 @@
       replace: '0.0.0.0'
   - name: Restart Mongod
     ansible.builtin.service:
-      name: "{{SERVICE}}"
+      name: mongod
       state: restarted
 
