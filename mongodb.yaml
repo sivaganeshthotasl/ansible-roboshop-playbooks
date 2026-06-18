@@ -1,0 +1,20 @@
+# MongoDB Set UP
+
+- name: Configuring MongoDB Set UP
+  hosts: mongodb
+  become: true
+
+  tasks:
+  - name: copy MongoDB repo
+    ansible.builtin.copy:
+      src: mongo.repo
+      dest: /etc/yum.repos.d/mongo.repo
+
+  - name: install MongoDB
+    ansible.builtin.package:
+      name: mongodb-org
+      state: present
+
+
+
+
