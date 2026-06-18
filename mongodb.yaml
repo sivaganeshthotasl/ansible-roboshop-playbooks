@@ -5,7 +5,7 @@
   become: true
 
   vars:
-    PACKAGE: mongdb-org
+    PACKAGE: mongodb-org
     SERVICE: mongod
   tasks:
   - name: Copy mongodb repo file
