@@ -17,18 +17,17 @@
     ansible.builtin.package:
       name: "{{ PACKAGE }}"
       state: present
-  - name: Enable and Start Mongodb
-    ansible.builtin.service:
-      name: " {{ SERVICE }}"
-      enabled: yes
-      state: started
-  - name: Allow Remote connection
-    ansible.builtin.replace:
-      path: /etc/mongod.Conf
-      regexp: '127.0.0.1'
-      replace: '0.0.0.0'
-  - name: Restart Mongod
-    name: "{{ SERVICE }}"
-    state: restarted
+  # - name: Enable and Start Mongodb
+  #   ansible.builtin.service:
+  #     name: " {{ SERVICE }}"
+  #     enabled: yes
+  #     state: started
+  # - name: Allow Remote connection
+  #   ansible.builtin.replace:
+  #     path: /etc/mongod.Conf
+  #     regexp: '127.0.0.1'
+  #     replace: '0.0.0.0'
+  # - name: Restart Mongod
+  #   name: "{{ SERVICE }}"
+  #   state: restarted
 
-    
