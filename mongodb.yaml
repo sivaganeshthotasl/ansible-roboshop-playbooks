@@ -19,7 +19,7 @@
       state: present
   - name: Enable and Start Mongodb
     ansible.builtin.service:
-       name: " {{ SERVICE }}"
+       name: " {{SERVICE}}"
        enabled: yes
        state: started
   - name: Allow Remote connection
@@ -29,6 +29,6 @@
       replace: '0.0.0.0'
   - name: Restart Mongod
     ansible.builtin.service:
-      name: "{{ SERVICE }}"
+      name: "{{SERVICE}}"
       state: restarted
 
