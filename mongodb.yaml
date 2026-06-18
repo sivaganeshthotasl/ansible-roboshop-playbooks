@@ -14,7 +14,7 @@
 
   - name: Install mongdb
     ansible.builtin.package:
-      name: mongod
+      name: "{{ PACKAGE }}"
       state: present
   - name: Enable and Start Mongodb
     ansible.builtin.service:
