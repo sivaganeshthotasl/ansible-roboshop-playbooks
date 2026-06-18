@@ -1,7 +1,7 @@
 # Mongodb Configuration
 
 - name: Configuring MongoDB
-  hosts: mongdb
+  hosts: mongodb
   become: true
 
   vars:
