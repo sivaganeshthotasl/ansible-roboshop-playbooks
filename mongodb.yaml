@@ -18,7 +18,7 @@
       state: present
 
   - name: start and enable MongoDB Service
-    ansible.buitin.service:
+    ansible.builtin.service:
       name: "{{ SERVICE }}"
       state: started
       enabled: yes
