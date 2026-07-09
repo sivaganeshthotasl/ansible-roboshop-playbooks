@@ -1,0 +1,42 @@
+- name: Configuring Catalogue
+  hosts: catalogue 
+  become: yes
+
+  vars:
+    PACKAGE: nodejs
+
+
+  tasks:
+  - name: Disable Current Nodejs Version
+    ansible.builtin.command: dnf module disable nodejs -y
+  
+  - name: Enable nodejs:20 
+    ansible.builtin.command: dnf module enable nodejs:20 -y
+
+  - name: Install Nodejs
+    ansible.builtin.dnf:
+      name: "{{ PACKAGE }}"
+      state: present
+
+  - name: Create Roboshop System User
+    ansible.builtin.user:
+      name: roboshop 
+      shell: /sbin/nologin
+      system: true
+      home: /app/
+
+  - name: Create a Directory
+    ansible.builtin.file:
+      path: /app
+      state: directory 
+
+  - name: Download the Application code
+    ansible.builtin.get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+      dest: /tmp/catalogue.zip 
+  
+  - name: Extract Application Content
+    ansible.builtin.unarchive:
+      src: /tmp/catalogue.zip
+      dest: /app
+  
