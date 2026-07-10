@@ -28,7 +28,8 @@
     ansible.builtin.lineinfile:
       path: /etc/redis/redis.conf
       regexp: 'protect-mode'
-      replace: protect-mode no
+      line: protect-mode no
+
 
   - name: Enable and start redis
     ansible.builtin.service:
