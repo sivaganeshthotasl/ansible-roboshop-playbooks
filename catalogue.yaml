@@ -41,6 +41,7 @@
     ansible.builtin.unarchive:
       src: /tmp/catalogue.zip
       dest: /app
+      remote_src: true
 
   - name: Install or download dependencies using npm
     community.general.npm:
