@@ -3,7 +3,7 @@
   become: yes
 
   vars:
-    PACKAGE: 
+    PACKAGE: redis
 
   tasks:
   - name: Disable Current Redis version
