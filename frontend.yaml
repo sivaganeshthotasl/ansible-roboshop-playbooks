@@ -39,6 +39,7 @@
     ansible.builtin.unarchive:
       src: /tmp/frontend.zip
       dest: /usr/share/nginx/html
+      remote_src: true
 
   - name: remove nginx.conf
     ansible.builtin.file:
