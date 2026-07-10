@@ -17,11 +17,6 @@
       name: "{{ PACKAGE }}"
       state: present
   
-  - name: Enable and start Redis
-    ansible.builtin.service:
-      name: redis
-      state: start
-      enabled: yes
 
   - name: Update Remote Connection
     ansible.builtin.replace:
@@ -37,7 +32,7 @@
 
   - name: Enable and start redis
     ansible.builtin.service:
-      name: redis
+      name: "{{ PACKAGE }}"
       state: started
       enabled: yes
   
