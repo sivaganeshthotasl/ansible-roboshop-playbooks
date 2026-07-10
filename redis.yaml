@@ -1,0 +1,47 @@
+- name: Redis Configuration
+  hosts: redis 
+  become: yes
+
+  vars:
+    PACKAGE: 
+
+  tasks:
+  - name: Disable Current Redis version
+    ansible.builtin.command: dnf module disable redis -y
+
+  - name: Enable Redis 7 version
+    ansible.builtin.command: dnf module enable redis:7 -y 
+
+  - name: Install Redis 
+    ansible.builtin.dnf:
+      name: "{{ PACKAGE }}"
+      state: present
+  
+  - name: Enable and start Redis
+    ansible.builtin.service:
+      name: redis
+      state: start
+      enabled: yes
+
+  - name: Update Remote Connection
+    ansible.builtin.replace:
+      path: /etc/redis/redis.conf
+      regexp: '127.0.0.1'
+      replace: '0.0.0.0'
+
+  - name: Disable Protect mode 
+    ansible.builtin.lineinfile:
+      path: /etc/redis/redis.conf
+      regexp: 'protect-mode'
+      replace: protect-mode no
+
+  - name: Enable and start redis
+    ansible.builtin.service:
+      name: redis
+      state: started
+      enabled: yes
+  
+  
+
+
+  
