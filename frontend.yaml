@@ -44,7 +44,7 @@
   - name: remove nginx.conf
     ansible.builtin.file:
       path: /etc/nginx/nginx.conf
-      state: present
+      state: absent
 
   - name: copy nginx.conf
     ansible.builtin.copy:
